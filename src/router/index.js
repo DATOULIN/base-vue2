@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
-
 /* Layout */
 import Layout from '@/layout'
+
+Vue.use(Router)
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -32,51 +32,59 @@ import Layout from '@/layout'
  */
 // 默认路由
 export const constantRoutes = [
-    {
-        path: '/login',
-        component: () => import('@/views/login/index'),
-        hidden: true
-    },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
 
-    {
-        path: '/404',
-        component: () => import('@/views/404'),
-        hidden: true
+  {
+    path: '/404',
+    component: () => import('@/views/404'),
+    hidden: true
+  },
+  {
+    path: '/',
+    redirect: '/home',
+    component: Layout,
+    meta: {
+      title: '目录',
+      icon: 'el-icon-menu'
     },
-    {
-        path: '/',
-        redirect:'/home',
-        component: Layout,
-        meta:{title:'目录',icon:'el-icon-menu'},
-        children:[
-            {
-                path:'home',
-                component: () => import('@/views/home'),
-                meta:{title:'测试1',icon:'el-icon-menu'}
-            },
-            {
-                path:'about',
-                component: () => import('@/views/about'),
-                meta:{title:'测试2',icon:'el-icon-menu'}
-            }
-        ]
-    },
-    // {path: '*', redirect: '/404', hidden: true}
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/home'),
+        meta: {
+          title: '测试1',
+          icon: 'el-icon-menu'
+        }
+      },
+      {
+        path: 'about',
+        component: () => import('@/views/about'),
+        meta: {
+          title: '测试2',
+          icon: 'el-icon-menu'
+        }
+      }
+    ]
+  }
+  // {path: '*', redirect: '/404', hidden: true}
 ]
 
-
 const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({y: 0}),
-    routes: constantRoutes})
-
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
+})
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+export function resetRouter () {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
 }
 
 export default router

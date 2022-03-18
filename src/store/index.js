@@ -4,20 +4,19 @@ import getters from './getters'
 import app from './modules/app'
 import settings from './modules/settings'
 import menu from './modules/menu'
-import permission from "@/store/modules/permission";
-
+import permission from '@/store/modules/permission'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    modules: {
-        app,
-        settings,
-        menu,
-        permission
-    },
+  modules: {
+    app,
+    settings,
+    menu,
+    permission
+  },
 
-    getters
+  getters
 })
 
 export default store

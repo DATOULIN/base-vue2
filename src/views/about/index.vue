@@ -1,12 +1,13 @@
 <template>
-    <div>
-        about
-    </div>
+  <div>
+    about
+  </div>
 </template>
 
 <script>
+
 export default {
-    name: "index"
+  name: 'index'
 }
 </script>
 
